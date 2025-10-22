@@ -17,7 +17,7 @@ WORKDIR /src
 COPY String_Analyzer String_Analyzer/
 COPY test test/
 COPY StringAnalyzer.sln .
-
+RUN ls -R
 # Restore dependencies
 RUN dotnet restore "StringAnalyzer.sln"
 
