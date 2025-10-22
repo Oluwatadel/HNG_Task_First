@@ -13,10 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Copy solution and project files
-COPY ["StringAnalyzer.sln", "."]
-COPY ["String_Analyzer/String_Analyzer.csproj", "String_Analyzer/"]
-COPY ["test/test.csproj", "test/"]
+# Copy the entire String_Analyzer project directory
+COPY String_Analyzer String_Analyzer/
+COPY test test/
+COPY StringAnalyzer.sln .
 
 # Restore dependencies
 RUN dotnet restore "StringAnalyzer.sln"
