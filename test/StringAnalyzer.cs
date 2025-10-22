@@ -5,10 +5,10 @@ using System.Net.Http.Json;
 
 namespace test
 {
-    public class StringsApiTests : IClassFixture<WebApplicationFactory<Program>>
+    public class StringsApiTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly HttpClient _client;
-        public StringsApiTests(WebApplicationFactory<Program> factory)
+        public StringsApiTests(CustomWebApplicationFactory factory)
         {
             _client = factory.CreateClient();
         }
