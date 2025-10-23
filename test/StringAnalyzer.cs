@@ -7,11 +7,14 @@ using System.Net.Http.Json;
 
 namespace test
 {
-    public class StringsApiTests : IClassFixture<CustomWebApplicationFactory>
+    public class StringsApiTests : IClassFixture<CustomWebApplicationFactory>, IDisposable
     {
+        private readonly CustomWebApplicationFactory _factory;
         private readonly HttpClient _client;
+    
         public StringsApiTests(CustomWebApplicationFactory factory)
         {
+            _factory = factory;
             _client = factory.CreateClient();
             using (var scope = factory.Services.CreateScope())
             {
@@ -20,7 +23,11 @@ namespace test
                 db.Database.EnsureCreated();
             }
         }
-
+    
+        public void Dispose()
+        {
+            _factory.Dispose();
+        }
         [Fact]
         public async Task Post_Then_Get_String()
         {
